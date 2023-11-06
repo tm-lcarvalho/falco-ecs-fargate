@@ -1,0 +1,46 @@
+#!/bin/bash
+#
+# Copyright (C) 2019 The Falco Authors.
+#
+# Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with
+# the License. You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the
+# specific language governing permissions and limitations under the License.
+#
+#
+# Common directories for the project
+#
+FALCO_TRACE_BIN_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+FALCO_DIR=${FALCO_TRACE_BIN_DIR}/../falco
+SYSDIG_DIR=${FALCO_TRACE_BIN_DIR}/../sysdig
+PDIG_DIR=${FALCO_TRACE_BIN_DIR}/../pdig
+ETC=${FALCO_TRACE_BIN_DIR}/../etc
+
+# ----------------------------------------------------------------------------------------------------
+# [ INSTALL FALCO ]
+#
+cd $FALCO_DIR
+# TODO @kris-nova have this pull from master once my PR is merged
+# TODO @kris-nova also use the official tarballs once this makes a release so we enable cert checking
+wget --no-check-certificate https://1760-49986046-gh.circle-artifacts.com/0/packages/falco-0.22.1-32%2Be81e2f9-x86_64.tar.gz
+tar -xzf falco-0.22.1-32+e81e2f9-x86_64.tar.gz
+cd falco-0.22.1-32+e81e2f9-x86_64
+cp -rv etc/falco /etc/falco
+cp -v $ETC/falco/falco.yaml /etc/falco/falco.yaml
+cp -rv usr/bin/falco /usr/bin/falco
+cp -rv usr/share/falco /usr/share/falco
+
+# ----------------------------------------------------------------------------------------------------
+# [ INSTALL PDIG ]
+#
+cd $PDIG_DIR
+rm -rf build # Wipe build for a clean install every time
+mkdir build
+cd build
+cmake ../
+make
+cp pdig /usr/bin/pdig
