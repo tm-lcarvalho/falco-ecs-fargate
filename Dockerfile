@@ -33,7 +33,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 COPY ./myscript.sh             /opt/falco/scripts/myscript.sh
 COPY ./supervisord.conf        /opt/falco/scripts/supervisord.conf
 
-CMD [ "/usr/bin/supervisord", "-c", "/vendor/falco/scripts/supervisord.conf" ]
+CMD [ "/usr/bin/supervisord", "-c", "/opt/falco/scripts/supervisord.conf" ]
 
 #CMD ["/falco-trace/bin/falco"]
 
