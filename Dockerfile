@@ -32,6 +32,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY ./myscript.sh             /opt/falco/scripts/myscript.sh
 COPY ./supervisord.conf        /opt/falco/scripts/supervisord.conf
+COPY ./falco_custom_rule.yaml  /etc/falco/rules.d/falco_custom_rule.yaml
 
 CMD [ "/usr/bin/supervisord", "-c", "/opt/falco/scripts/supervisord.conf" ]
 

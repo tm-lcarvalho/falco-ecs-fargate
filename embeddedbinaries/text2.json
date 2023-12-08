@@ -1,0 +1,9 @@
+{
+    "container_id": "a006ae58fc4e48539421e8ca1a12b6b9-1047541472",
+    "container_name": "container-falco",
+    "ecs_cluster": "test-falcon",
+    "ecs_task_arn": "arn:aws:ecs:ca-central-1:177078417298:task/test-falcon/a006ae58fc4e48539421e8ca1a12b6b9",
+    "ecs_task_definition": "Falco:9",
+    "log": "{\"output\":\"2023-12-01T23:46:36.336989899+0000: Informational Bash ran inside a container (user=root command=bash /vendor/falco/scripts/myscript.sh host (id=host))\",\"priority\":\"Informational\",\"rule\":\"Detect bash in a container\",\"source\":\"syscall\",\"tags\":[],\"time\":\"2023-12-01T23:46:36.336989899Z\", \"output_fields\": {\"container.id\":\"host\",\"container.name\":\"host\",\"evt.time.iso8601\":1701474396336989899,\"proc.cmdline\":\"bash /vendor/falco/scripts/myscript.sh\",\"user.name\":\"root\"}}",
+    "source": "stdout"
+}
